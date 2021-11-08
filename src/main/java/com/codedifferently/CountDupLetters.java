@@ -13,19 +13,20 @@ public class CountDupLetters {
 
     //loop word
     public Integer countDuplicateLetters(String input, String letter){
-        Map<Character, Integer> dupLetters = new HashMap<>();
-        Character oneLetter;
-        input= input.toLowerCase();
-        int count = 1;
-        for(int c = 0; c< input.length(); c++){
-           oneLetter = input.charAt(c);
-           dupLetters.put(oneLetter,count);
-           if(dupLetters.containsKey(oneLetter)){
-               count = dupLetters.get(oneLetter);
-               count++;
-           } //getting outrageous counts
+        Map<String, Integer> dupLetters = new HashMap<>();
+
+        input = input.toLowerCase();
+        String[] arrg = input.split("");
+        for(String let : arrg){
+            if(!dupLetters.containsKey(let)){
+                dupLetters.put(let, 1);
+            } else{
+                int count = dupLetters.get(let);
+                count++;
+                dupLetters.put(let, count);
+            }
         }
-        System.out.println(dupLetters);
-        return null;
+        Integer response = (dupLetters.containsKey(letter)) ? dupLetters.get(letter) : 0;
+        return response;
     }
 }
