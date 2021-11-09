@@ -11,15 +11,22 @@ public class CountDupLetters {
      * @return
      */
     public Integer countDuplicateLetters(String input, String letter){
-            Map<Character, Integer> dupLetters = new HashMap<>();
-            Character oneLetter;
-            int count = 1;
-            for(int i = 0; i< input.length(); i++){
-                oneLetter = input.charAt(i);
-                dupLetters.put(oneLetter,count);
+            Map<String, Integer> dupLetters = new HashMap<>();
+
+            String[] inputArray = input.toLowerCase().split("");
+
+            for(String let : inputArray){
+                if(dupLetters.containsKey(let)){
+                    Integer count = dupLetters.get(let);
+                    count++;
+
+                    dupLetters.put(let, count);
+                }else{
+                    dupLetters.put(let, 1);
+                }
             }
-            System.out.println(dupLetters);
-            return count;
+
+            return dupLetters.get(letter);
         }
     }
 
