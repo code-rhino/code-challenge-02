@@ -1,5 +1,9 @@
 package com.codedifferently;
 
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
 public class CountDupLetters {
     /**
      *
@@ -8,6 +12,28 @@ public class CountDupLetters {
      * @return
      */
     public Integer countDuplicateLetters(String input, String letter){
-        return null;
+        Map<String,Integer> letterCounter = new HashMap<>();
+
+
+    String[] newArray = input.toLowerCase().split("");
+    for( String a : newArray){
+        if (letterCounter.containsKey(a)){
+            Integer countIt = letterCounter.get(a);
+            countIt++;
+
+            letterCounter.put(a,countIt);
+
+
+
+        }else {
+            letterCounter.put(a,1);
+        }
+
+
+    }
+
+
+
+        return letterCounter.get(letter);
     }
 }
